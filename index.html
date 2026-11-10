@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>派遣前台灣華語研修 - 課堂用語</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&family=Noto+Serif+JP:wght@600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  /* 色調取自「教育AI工具箱」截圖：暖灰米底、奶白半透明卡、深咖啡重點色 */
+  --bg:#e5ded6;
+  --paper:#fffdf9;
+  --glass:rgba(251,247,241,.74);
+  --ink:#2f2220;
+  --ink2:#6c5d58;
+  --ink3:#9a8c85;
+  --line:rgba(60,42,38,.15);
+  --line2:rgba(60,42,38,.36);
+  --brown:#3a2927;
+  --cream:#f6efe6;
+  --tan:#dcc3a6;
+  --py:#9a5b3a;
+  --serif:'Noto Serif TC','Noto Serif JP',serif;
+  --serif-ja:'Noto Serif JP','Noto Serif TC',serif;
+  --sans:'Noto Sans TC','Noto Sans JP',sans-serif;
+}
+
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--sans);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:100vh;min-height:100dvh;overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+/* 極淡的斜向光帶，呼應截圖背景的絲綢感 */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background:
+    linear-gradient(115deg,transparent 0 36%,rgba(255,255,255,.30) 47%,transparent 58%),
+    linear-gradient(180deg,#e9e2da,#ddd5cc);
+}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brown);outline-offset:3px}
+
+/* ══ 舞台：電腦／平板＝橫式 4:3，約 iPad 的 80% ══ */
+.stage{
+  --w:min(80vw,calc(80vh*4/3),960px);
+  --u:1cqw;                       /* 全部尺寸以舞台寬度的 1% 為單位 */
+  --fs-s:max(12px,calc(var(--u)*1.7));
+  width:var(--w);aspect-ratio:4/3;
+  container-type:size;
+  position:relative;overflow:hidden;
+  background:var(--glass);
+  border:1px solid var(--line);border-radius:14px;
+}
+@supports (height:1dvh){.stage{--w:min(80vw,calc(80dvh*4/3),960px)}}
+
+/* 平板直拿：仍維持橫式舞台，並提示橫放 */
+.rotate-hint{display:none;margin-top:14px;font-size:13px;letter-spacing:.14em;color:var(--ink2)}
+@media (orientation:portrait) and (min-width:701px){
+  .stage{--w:min(92vw,960px)}
+  .rotate-hint{display:block}
+}
+
+/* ══ 手機：滿版、直式流動 ══ */
+@media (max-width:700px),(max-height:480px){
+  body{display:block}
+  .stage{
+    --u:min(2.1vw,1.45vh);
+    width:100%;aspect-ratio:auto;container-type:normal;
+    min-height:100vh;min-height:100dvh;
+    border:0;border-radius:0;background:rgba(251,247,241,.6);
+  }
+  .rotate-hint{display:none!important}
+}
+
+.screen{display:none;position:absolute;inset:0;flex-direction:column;padding:calc(var(--u)*3.2)}
+.screen.active{display:flex}
+@media (max-width:700px),(max-height:480px){
+  .screen{position:relative;min-height:100vh;min-height:100dvh;
+    padding-left:max(calc(var(--u)*3.2),env(safe-area-inset-left));
+    padding-right:max(calc(var(--u)*3.2),env(safe-area-inset-right));
+    padding-top:max(calc(var(--u)*3.2),env(safe-area-inset-top));
+    padding-bottom:max(calc(var(--u)*3.2),env(safe-area-inset-bottom))}
+}
+
+.eyebrow{font-size:var(--fs-s);letter-spacing:.28em;color:var(--ink3)}
+
+.pill{
+  font-size:max(14px,calc(var(--u)*2.3));font-weight:500;letter-spacing:.06em;
+  height:max(44px,calc(var(--u)*6));padding:0 calc(var(--u)*3);
+  border-radius:999px;border:1px solid var(--line2);background:rgba(255,255,255,.72);
+  cursor:pointer;transition:background .15s,border-color .15s,opacity .15s;
+  display:inline-flex;align-items:center;justify-content:center;gap:.5em;white-space:nowrap;
+}
+.pill:hover:not(:disabled){background:#fff;border-color:var(--ink)}
+.pill.dark{background:var(--brown);border-color:var(--brown);color:var(--cream)}
+.pill.dark:hover:not(:disabled){background:#4a3532;border-color:#4a3532}
+.pill:disabled{opacity:.32;cursor:default}
+.pill.off{visibility:hidden}
+.pill svg{width:1.25em;height:1.25em;flex:none}
+.pill.playing svg{animation:beat .5s ease-in-out infinite alternate}
+@keyframes beat{from{opacity:1}to{opacity:.35}}
+.pill.small{height:max(40px,calc(var(--u)*4.8));padding:0 calc(var(--u)*2.4);font-size:max(13px,calc(var(--u)*2))}
+
+/* ══ 封面 ══ */
+.home-top{display:flex;justify-content:center;align-items:center}
+.home-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--u)*4.5);text-align:center}
+.home-head h1{
+  font-family:var(--serif);font-weight:700;white-space:nowrap;
+  font-size:calc(var(--u)*7.2);line-height:1.2;letter-spacing:.12em;
+}
+.home-head p{margin-top:calc(var(--u)*1.6);font-size:max(14px,calc(var(--u)*2.2));letter-spacing:.2em;color:var(--ink2)}
+.home-head p b{font-weight:700;color:var(--ink)}
+
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u)*2.4);align-items:stretch;width:100%;max-width:calc(var(--u)*78)}
+.mode{
+  text-align:center;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--u)*.9);
+  min-height:calc(var(--u)*22);
+  padding:calc(var(--u)*2.6) calc(var(--u)*2.8);
+  border-radius:12px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);
+  transition:translate .18s,background .18s;
+}
+.mode:hover{translate:0 -4px}
+.mode.dark{background:var(--brown);border-color:var(--brown);color:var(--cream)}
+.mode .glyph{font-family:var(--serif);font-weight:700;font-size:calc(var(--u)*6.4);line-height:1.1;letter-spacing:.04em}
+.mode .glyph em{font-style:normal;font-weight:400;opacity:.5;margin:0 .12em}
+.mode .name{font-size:max(17px,calc(var(--u)*3));font-weight:700;letter-spacing:.14em}
+.mode .desc{font-size:max(13px,calc(var(--u)*2));letter-spacing:.1em;color:var(--ink2)}
+.mode.dark .desc{color:rgba(246,239,230,.66)}
+
+@media (max-width:700px){
+  .home-head h1{font-size:calc(var(--u)*8)}
+  .modes{grid-template-columns:1fr;gap:calc(var(--u)*1.8)}
+  .mode{min-height:calc(var(--u)*20)}
+}
+
+/* ══ 翻卡畫面 ══ */
+.deck-top{display:flex;align-items:center;gap:calc(var(--u)*2)}
+.back{
+  flex:none;width:max(44px,calc(var(--u)*5.6));height:max(44px,calc(var(--u)*5.6));
+  border-radius:50%;border:1px solid var(--line2);background:rgba(255,255,255,.72);
+  font-size:max(18px,calc(var(--u)*2.6));cursor:pointer;line-height:1;
+}
+.back:hover{background:#fff;border-color:var(--ink)}
+.deck-title{flex:1;display:flex;flex-direction:column;gap:.15em;min-width:0}
+.deck-title b{font-family:var(--serif);font-size:max(19px,calc(var(--u)*3.4));letter-spacing:.12em}
+.deck-count{font-family:var(--serif);font-size:max(19px,calc(var(--u)*3.4));font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.deck-count span{color:var(--ink3);font-size:.7em}
+.progress{height:2px;background:var(--line);margin:calc(var(--u)*1.6) 0 calc(var(--u)*2)}
+.progress i{display:block;height:100%;width:0;background:var(--brown);transition:width .4s}
+
+.card-zone{flex:1;min-height:0;perspective:1500px;display:flex}
+@media (max-width:700px),(max-height:480px){.card-zone{min-height:calc(var(--u)*30)}}
+.card{
+  flex:1;position:relative;cursor:pointer;
+  transform-style:preserve-3d;-webkit-transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);
+  -webkit-tap-highlight-color:transparent;
+}
+.card.flipped{transform:rotateY(180deg)}
+.card.rise{animation:rise .3s ease-out}
+@keyframes rise{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
+@media (prefers-reduced-motion:reduce){.card{transition-duration:.01s}.card.rise{animation:none}}
+
+.face{
+  position:absolute;inset:0;border-radius:12px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:calc(var(--u)*5) calc(var(--u)*2.4);text-align:center;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+}
+.front{background:var(--paper);border:1px solid var(--line2)}
+.back-face{background:var(--brown);color:var(--cream);transform:rotateY(180deg)}
+
+.tag{position:absolute;top:calc(var(--u)*2);left:calc(var(--u)*2.4);font-size:var(--fs-s);letter-spacing:.3em;color:var(--ink3)}
+.back-face .tag{color:rgba(246,239,230,.5)}
+.hint{position:absolute;bottom:calc(var(--u)*2);left:0;right:0;font-size:var(--fs-s);letter-spacing:.26em;color:var(--ink3)}
+.back-face .hint{color:rgba(246,239,230,.45)}
+
+/* 中文＋拼音（ruby 式） */
+.ruby{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:calc(var(--u)*1.2) calc(var(--u)*.9);max-width:100%}
+.rp{display:flex;flex-direction:column;align-items:center}
+.rp .py{font-size:max(12px,calc(var(--u)*2.3));font-weight:500;line-height:1.5;color:var(--py);letter-spacing:.02em}
+.rp .ch{font-family:var(--serif);font-weight:700;font-size:calc(var(--u)*7);line-height:1.15;color:var(--ink)}
+.rp.p .ch{font-weight:500;font-size:calc(var(--u)*5.4);color:var(--ink2)}
+.back-face .rp .py{color:var(--tan)}
+.back-face .rp .ch{color:var(--cream)}
+.back-face .rp.p .ch{color:rgba(246,239,230,.7)}
+
+/* 日文 */
+.ja{font-family:var(--serif-ja);font-weight:600;font-size:calc(var(--u)*5.2);line-height:1.55;letter-spacing:.03em;max-width:90%}
+.sub{margin-top:calc(var(--u)*2.2);font-size:max(14px,calc(var(--u)*2.5));line-height:1.5;color:rgba(246,239,230,.6);max-width:90%}
+.sub.zh{font-family:var(--serif)}
+.sub.ja-sub{font-family:var(--serif-ja)}
+
+.controls{display:flex;justify-content:space-between;align-items:center;gap:calc(var(--u)*1.6);margin-top:calc(var(--u)*2.2)}
+@media (max-width:700px){.controls .pill{padding:0 calc(var(--u)*2)}}
+</style>
+</head>
+<body>
+
+<main class="stage" id="stage">
+
+  <!-- 封面 -->
+  <section class="screen active" id="home">
+    <div class="home-top">
+      <button class="pill small" onclick="showPortal()">← 所有課次</button>
+    </div>
+    <div class="home-body">
+      <div class="home-head">
+        <h1>課堂用語</h1>
+        <p><b id="count">35</b> 句課堂常用詞語　·　中日對照</p>
+      </div>
+      <div class="modes">
+        <button class="mode dark" onclick="startDeck('zh2ja')">
+          <span class="glyph">中<em>→</em>日</span>
+          <span class="name">中翻日</span>
+          <span class="desc">看中文，說出日文意思</span>
+        </button>
+        <button class="mode" onclick="startDeck('ja2zh')">
+          <span class="glyph">日<em>→</em>中</span>
+          <span class="name">日翻中</span>
+          <span class="desc">看日文，說出中文</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 翻卡（中翻日／日翻中共用） -->
+  <section class="screen" id="deck">
+    <header class="deck-top">
+      <button class="back" onclick="backHome()" aria-label="回到課堂用語封面">←</button>
+      <div class="deck-title"><span class="eyebrow">課堂用語</span><b id="deck-name">中翻日</b></div>
+      <div class="deck-count"><span id="cur">01</span><span> / <span id="total">35</span></span></div>
+    </header>
+    <div class="progress"><i id="bar"></i></div>
+
+    <div class="card-zone">
+      <div class="card" id="card" role="button" tabindex="0" aria-label="點一下翻卡" onclick="flip()">
+        <div class="face front" id="front"></div>
+        <div class="face back-face" id="back"></div>
+      </div>
+    </div>
+
+    <footer class="controls">
+      <button class="pill" id="prev" onclick="prevCard()">← 上一張</button>
+      <button class="pill" id="snd" onclick="speakWord()" aria-label="播放中文發音">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+        聽發音
+      </button>
+      <button class="pill dark" id="next" onclick="nextCard()">下一張 →</button>
+    </footer>
+  </section>
+
+</main>
+<p class="rotate-hint">↻ 請將平板橫放，畫面會更大</p>
+
+<script>
+const CL_VOCAB = [
+  {char:'跟我念', pinyin:'gēn wǒ niàn', meaning:'私のあとに読んでください'},
+  {char:'有問題嗎？', pinyin:'yǒu wèn tí ma？', meaning:'質問はありますか？'},
+  {char:'我有問題', pinyin:'wǒ yǒu wèn tí', meaning:'質問があります'},
+  {char:'○○是什麼意思？', pinyin:'○○ shì shén me yì si？', meaning:'○○はどういう意味ですか？'},
+  {char:'○○的中文是什麼？', pinyin:'○○ de zhōng wén shì shén me？', meaning:'○○の中国語は何ですか？'},
+  {char:'問我', pinyin:'wèn wǒ', meaning:'私に聞いて'},
+  {char:'問同學', pinyin:'wèn tóng xué', meaning:'クラスメートに聞いて'},
+  {char:'請再說一次', pinyin:'qǐng zài shuō yī cì', meaning:'もう一度言ってください'},
+  {char:'請說大聲一點', pinyin:'qǐng shuō dà shēng yī diǎn', meaning:'大きい声で話してください'},
+  {char:'請說慢一點', pinyin:'qǐng shuō màn yī diǎn', meaning:'ゆっくり話してください'},
+  {char:'答對了！好棒！', pinyin:'dá duì le！hǎo bàng！', meaning:'正解！すごい！'},
+  {char:'不對，可惜！', pinyin:'bú duì，kě xī！', meaning:'違います、残念！'},
+  {char:'請坐下', pinyin:'qǐng zuò xià', meaning:'座ってください'},
+  {char:'請站起來', pinyin:'qǐng zhàn qǐ lái', meaning:'立ってください'},
+  {char:'舉手', pinyin:'jǔ shǒu', meaning:'手を挙げる'},
+  {char:'輪流', pinyin:'lún liú', meaning:'順番に'},
+  {char:'請到前面來', pinyin:'qǐng dào qián miàn lái', meaning:'前に来てください'},
+  {char:'請回座位', pinyin:'qǐng huí zuò wèi', meaning:'席に戻ってください'},
+  {char:'兩人一組', pinyin:'liǎng rén yī zǔ', meaning:'二人一組'},
+  {char:'分成一半', pinyin:'fēn chéng yī bàn', meaning:'半分に分ける'},
+  {char:'打開課本第～頁', pinyin:'dǎ kāi kè běn dì～yè', meaning:'教科書の〜ページを開いて'},
+  {char:'課本收起來', pinyin:'kè běn shōu qǐ lái', meaning:'教科書をしまって'},
+  {char:'請念', pinyin:'qǐng niàn', meaning:'読んでください'},
+  {char:'看講義（プリント）', pinyin:'kàn jiǎng yì', meaning:'プリントを見て'},
+  {char:'懂了嗎？', pinyin:'dǒng le ma？', meaning:'分かりましたか？'},
+  {char:'懂了。', pinyin:'dǒng le.', meaning:'分かりました。'},
+  {char:'不懂。', pinyin:'bù dǒng.', meaning:'分かりません。'},
+  {char:'第＿頁', pinyin:'dì yè', meaning:'〜ページ', speakText:'第頁'},
+  {char:'請看我。', pinyin:'qǐng kàn wǒ.', meaning:'私を見てください。'},
+  {char:'聽我說。', pinyin:'tīng wǒ shuō.', meaning:'私の話を聞いてください。'},
+  {char:'跟我說。', pinyin:'gēn wǒ shuō.', meaning:'私のあとに言ってください。'},
+  {char:'請你說。', pinyin:'qǐng nǐ shuō.', meaning:'言ってみてください。'},
+  {char:'好了嗎？', pinyin:'hǎo le ma？', meaning:'準備できましたか？'},
+  {char:'好了。', pinyin:'hǎo le.', meaning:'準備できました。'},
+  {char:'很好。', pinyin:'hěn hǎo.', meaning:'とても良いです。'},
+];
+
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,'0');
+
+let mode = 'zh2ja';   // zh2ja＝中翻日　ja2zh＝日翻中
+let list = [], idx = 0, speakTimer = null;
+
+/* ── 畫面切換 ── */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function showPortal(){ location.href = 'index.html'; }
+function backHome(){
+  clearTimeout(speakTimer);
+  if('speechSynthesis' in window) window.speechSynthesis.cancel();
+  showScreen('home');
+}
+
+/* ── 開始 ── */
+function startDeck(m){
+  unlockTTS();
+  mode = m;
+  list = shuffle([...CL_VOCAB]);
+  idx = 0;
+  $('deck-name').textContent = (m === 'zh2ja') ? '中翻日' : '日翻中';
+  $('total').textContent = list.length;
+  showScreen('deck');
+  render();
+}
+
+/* ── 組字卡 ── */
+function jaHtml(v){ return `<div class="ja" lang="ja">${v.meaning}</div>`; }
+
+function render(){
+  const v = list[idx];
+  const card = $('card');
+
+  // 換下一張時先「瞬間」翻回正面，避免看到新答案
+  card.style.transition = 'none';
+  card.classList.remove('flipped');
+  void card.offsetWidth;
+  card.style.transition = '';
+
+  if(mode === 'zh2ja'){
+    $('front').innerHTML =
+      `<span class="tag">中文</span>${buildRuby(v.char, v.pinyin)}<span class="hint">點一下翻卡</span>`;
+    $('back').innerHTML =
+      `<span class="tag">日本語</span>${jaHtml(v)}<div class="sub zh">${v.char}</div>`;
+  } else {
+    $('front').innerHTML =
+      `<span class="tag">日本語</span>${jaHtml(v)}<span class="hint">先用中文說說看　·　點一下翻卡</span>`;
+    $('back').innerHTML =
+      `<span class="tag">中文</span>${buildRuby(v.char, v.pinyin)}<div class="sub ja-sub" lang="ja">${v.meaning}</div>`;
+  }
+
+  $('cur').textContent = pad(idx + 1);
+  $('bar').style.width = ((idx + 1) / list.length * 100) + '%';
+  $('prev').disabled = (idx === 0);
+  $('next').textContent = (idx === list.length - 1) ? '再來一輪 ↻' : '下一張 →';
+  // 日翻中：翻卡前不可聽發音（會洩漏答案）
+  $('snd').classList.toggle('off', mode === 'ja2zh');
+
+  card.classList.remove('rise'); void card.offsetWidth; card.classList.add('rise');
+
+  clearTimeout(speakTimer);
+  if(mode === 'zh2ja') speakTimer = setTimeout(speakWord, 500);
+}
+
+function flip(){
+  const f = $('card').classList.toggle('flipped');
+  if(mode === 'ja2zh'){
+    $('snd').classList.toggle('off', !f);
+    if(f) speakWord();        // 翻到中文那面就唸出來（仍在使用者點擊當下，iOS 才會出聲）
+  }
+}
+function nextCard(){
+  unlockTTS();
+  if(idx < list.length - 1){ idx++; }
+  else { list = shuffle(list); idx = 0; }
+  render();
+}
+function prevCard(){
+  if(idx > 0){ unlockTTS(); idx--; render(); }
+}
+
+/* ── 拼音＋漢字配對 ── */
+function buildRuby(char, pinyin){
+  const syl = pinyin.match(/[\p{L}\p{M}]+/gu) || [];
+  const chars = char.match(/（[^（）]*）|\([^()]*\)|○+|＿|\S/gu) || [];
+  const isPunct = s => /^[，。！？、：；「」【】～○＿（(]/.test(s);
+  let si = 0;
+  const out = chars.map(ch=>{
+    if(isPunct(ch)) return `<span class="rp p"><span class="py">&nbsp;</span><span class="ch">${ch}</span></span>`;
+    const s = syl[si] || ''; if(s) si++;
+    return `<span class="rp"><span class="py">${s || '&nbsp;'}</span><span class="ch">${ch}</span></span>`;
+  });
+  return `<div class="ruby">${out.join('')}</div>`;
+}
+
+/* ── 發音 ── */
+function unlockTTS(){
+  // 自動朗讀會延遲 500ms（等翻卡動畫），Safari/iOS 會認為不是使用者操作而靜音；
+  // 所以先在點擊當下同步丟一個無聲 utterance 佔住「使用者操作中」的狀態。
+  if(!('speechSynthesis' in window)) return;
+  try{
+    const u = new SpeechSynthesisUtterance(' ');
+    u.volume = 0;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+function speakWord(){
+  const v = list[idx]; if(!v) return;
+  const btn = $('snd');
+  btn.classList.add('playing');
+  const t = (v.speakText || v.char).replace(/（[^）]*）/g,'').replace(/[○～＿]/g,'');
+  speak(t);
+  setTimeout(()=>btn.classList.remove('playing'),1400);
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const processed = text.replace(/面/g,'麵').replace(/還書/g,'環書').replace(/不舒服/g,'不舒fu');
+  const u = new SpeechSynthesisUtterance(processed);
+  u.lang = 'zh-TW'; u.rate = 0.45;
+  const doSpeak = ()=>{
+    const voices = window.speechSynthesis.getVoices();
+    const tw = voices.find(v=>v.lang==='zh-TW' && /Taiwan|Meijia|Tingting|Yating/i.test(v.name))
+            || voices.find(v=>v.lang==='zh-TW')
+            || voices.find(v=>v.lang.startsWith('zh'));
+    if(tw) u.voice = tw;
+    window.speechSynthesis.speak(u);
+  };
+  if(window.speechSynthesis.getVoices().length > 0) doSpeak();
+  else window.speechSynthesis.onvoiceschanged = ()=>{ window.speechSynthesis.onvoiceschanged = null; doSpeak(); };
+}
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; }
+  return arr;
+}
+
+/* ── 鍵盤：← → 換卡、空白／Enter 翻卡、Esc 返回 ── */
+document.addEventListener('keydown', e=>{
+  if(!$('deck').classList.contains('active')) return;
+  if(e.key === 'ArrowRight') nextCard();
+  else if(e.key === 'ArrowLeft') prevCard();
+  else if(e.key === 'Escape') backHome();
+  else if((e.key === ' ' || e.key === 'Enter') && e.target.tagName !== 'BUTTON'){ e.preventDefault(); flip(); }
+});
+
+window.addEventListener('DOMContentLoaded', ()=>{
+  $('count').textContent = CL_VOCAB.length;
+  showScreen('home');
+});
+</script>
+</body>
+</html>
